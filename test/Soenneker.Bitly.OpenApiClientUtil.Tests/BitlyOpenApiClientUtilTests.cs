@@ -1,20 +1,19 @@
 using Soenneker.Bitly.OpenApiClientUtil.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Bitly.OpenApiClientUtil.Tests;
 
-[Collection("Collection")]
-public sealed class BitlyOpenApiClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class BitlyOpenApiClientUtilTests : HostedUnitTest
 {
     private readonly IBitlyOpenApiClientUtil _openapiclientutil;
 
-    public BitlyOpenApiClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public BitlyOpenApiClientUtilTests(Host host) : base(host)
     {
         _openapiclientutil = Resolve<IBitlyOpenApiClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
