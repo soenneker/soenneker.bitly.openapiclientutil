@@ -10,5 +10,10 @@ namespace Soenneker.Bitly.OpenApiClientUtil.Abstract;
 /// </summary>
 public interface IBitlyOpenApiClientUtil: IDisposable, IAsyncDisposable
 {
+    /// <summary>
+    /// Gets the value.
+    /// </summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>A task containing the result of the operation.</returns>
     ValueTask<BitlyOpenApiClient> Get(CancellationToken cancellationToken = default);
 }
