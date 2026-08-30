@@ -11,7 +11,7 @@ namespace Soenneker.Bitly.OpenApiClientUtil.Registrars;
 public static class BitlyOpenApiClientUtilRegistrar
 {
     /// <summary>
-    /// Adds <see cref="BitlyOpenApiClientUtil"/> as a singleton service. <para/>
+    /// Adds <see cref="IBitlyOpenApiClientUtil"/> as a singleton service backed by the singleton HTTP-client provider.
     /// </summary>
     public static IServiceCollection AddBitlyOpenApiClientUtilAsSingleton(this IServiceCollection services)
     {
@@ -22,7 +22,7 @@ public static class BitlyOpenApiClientUtilRegistrar
     }
 
     /// <summary>
-    /// Adds <see cref="BitlyOpenApiClientUtil"/> as a scoped service. <para/>
+    /// Adds <see cref="IBitlyOpenApiClientUtil"/> as a scoped service backed by the singleton HTTP-client provider.
     /// </summary>
     public static IServiceCollection AddBitlyOpenApiClientUtilAsScoped(this IServiceCollection services)
     {

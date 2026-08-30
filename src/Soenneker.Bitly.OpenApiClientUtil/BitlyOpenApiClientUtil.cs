@@ -14,7 +14,6 @@ using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.Bitly.OpenApiClientUtil;
 
-///<inheritdoc cref="IBitlyOpenApiClientUtil"/>
 public sealed class BitlyOpenApiClientUtil : IBitlyOpenApiClientUtil
 {
     private readonly AsyncSingleton<BitlyOpenApiClient> _client;
@@ -27,10 +26,11 @@ public sealed class BitlyOpenApiClientUtil : IBitlyOpenApiClientUtil
                                                         .NoSync();
 
             var apiKey = configuration.GetValueStrict<string>("Bitly:ApiKey");
+            string authHeaderName = configuration["Bitly:AuthHeaderName"] ?? "Authorization";
             string authHeaderValueTemplate = configuration["Bitly:AuthHeaderValueTemplate"] ?? "Bearer {token}";
             string authHeaderValue = authHeaderValueTemplate.Replace("{token}", apiKey, StringComparison.Ordinal);
 
-            var requestAdapter = new HttpClientRequestAdapter(new GenericAuthenticationProvider(headerValue: authHeaderValue), httpClient: httpClient);
+            var requestAdapter = new HttpClientRequestAdapter(new GenericAuthenticationProvider(authHeaderName, authHeaderValue), httpClient: httpClient);
 
             return new BitlyOpenApiClient(requestAdapter);
         });
@@ -41,18 +41,11 @@ public sealed class BitlyOpenApiClientUtil : IBitlyOpenApiClientUtil
         return _client.Get(cancellationToken);
     }
 
-    /// <summary>
-    /// Releases resources used by the current instance.
-    /// </summary>
     public void Dispose()
     {
         _client.Dispose();
     }
 
-    /// <summary>
-    /// Asynchronously releases resources used by the current instance.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public ValueTask DisposeAsync()
     {
         return _client.DisposeAsync();
