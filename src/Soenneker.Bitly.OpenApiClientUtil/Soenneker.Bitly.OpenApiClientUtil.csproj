@@ -41,8 +41,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Soenneker.Kiota.GenericAuthenticationProvider" Version="4.0.40" />
-        <PackageReference Include="Soenneker.Bitly.HttpClients" Version="4.0.94" />
+        <PackageReference Include="Soenneker.Kiota.GenericAuthenticationProvider" Version="4.0.41" />
+        <PackageReference Include="Soenneker.Bitly.HttpClients" Version="4.0.95" />
         <PackageReference Include="Soenneker.Bitly.OpenApiClient" Version="4.0.26" />
     </ItemGroup>
 </Project>
