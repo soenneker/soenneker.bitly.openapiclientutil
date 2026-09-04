@@ -14,6 +14,7 @@ using Soenneker.Utils.AsyncSingleton;
 
 namespace Soenneker.Bitly.OpenApiClientUtil;
 
+/// <inheritdoc cref="IBitlyOpenApiClientUtil" />
 public sealed class BitlyOpenApiClientUtil : IBitlyOpenApiClientUtil
 {
     private readonly AsyncSingleton<BitlyOpenApiClient> _client;
