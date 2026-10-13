@@ -26,7 +26,7 @@ public sealed class BitlyOpenApiClientUtil : IBitlyOpenApiClientUtil
             HttpClient httpClient = await httpClientUtil.Get(token)
                                                         .NoSync();
 
-            var apiKey = configuration.GetValueStrict<string>("Bitly:ApiKey");
+            var apiKey = configuration.GetStringStrict("Bitly:ApiKey");
             string authHeaderName = configuration["Bitly:AuthHeaderName"] ?? "Authorization";
             string authHeaderValueTemplate = configuration["Bitly:AuthHeaderValueTemplate"] ?? "Bearer {token}";
             string authHeaderValue = authHeaderValueTemplate.Replace("{token}", apiKey, StringComparison.Ordinal);
